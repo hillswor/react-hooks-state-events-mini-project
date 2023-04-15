@@ -1,11 +1,16 @@
 import React from "react";
+import uuid from "react-uuid";
 
-function Task() {
+function Task({ text, category, removeTask }) {
+  const uniqueId = uuid();
+
   return (
     <div className="task">
-      <div className="label">CATEGORY HERE</div>
-      <div className="text">TEXT HERE</div>
-      <button className="delete">X</button>
+      <div className="label">{category}</div>
+      <div className="text">{text}</div>
+      <button onClick={removeTask} className="delete">
+        X
+      </button>
     </div>
   );
 }

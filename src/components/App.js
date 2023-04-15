@@ -7,19 +7,21 @@ import { CATEGORIES, TASKS } from "../data";
 
 function App() {
   const [categories, setCategories] = useState(CATEGORIES);
-  const [tasks, setTasks] = useState(
-    TASKS.map((task) => {
-      task.id = uuid();
-    })
-  );
+  const [tasks, setTasks] = useState(TASKS);
 
-  debugger;
+  function removeTask(text) {
+    const newTaskList = tasks.filter((task) => {
+      return task.text !== text;
+    });
+    setTasks(newTaskList);
+  }
+
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter />
+      <CategoryFilter categories={categories} />
       <NewTaskForm />
-      <TaskList tasks={tasks} categories={categories} />
+      <TaskList tasks={tasks} categories={categories} removeTask={removeTask} />
     </div>
   );
 }
